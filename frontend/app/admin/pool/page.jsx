@@ -30,6 +30,7 @@ import {
 import { UserCircle } from "@phosphor-icons/react";
 import { apiFetch } from "../../lib/api";
 import { formatCurrency, cn } from "../../lib/format";
+import { BACKEND_URL } from "../../lib/socket";
 
 export default function PoolPage() {
   const [pool, setPool] = useState([]);
@@ -166,7 +167,7 @@ export default function PoolPage() {
                                <div className={cn("h-9 w-9 shrink-0 rounded-full flex items-center justify-center text-[11px] font-bold border border-slate-100 shadow-sm overflow-hidden", !item.image_url && "bg-slate-900 text-white")}>
                                   {item.image_url ? (
                                     <img 
-                                      src={item.image_url.startsWith('http') ? item.image_url : `/uploads/${item.image_url}`} 
+                                      src={item.image_url.startsWith('http') ? item.image_url : `${BACKEND_URL}/uploads/${item.image_url}`} 
                                       alt="" 
                                       className="w-full h-full object-contain" 
                                     />

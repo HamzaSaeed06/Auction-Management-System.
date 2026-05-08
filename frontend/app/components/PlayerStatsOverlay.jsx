@@ -12,6 +12,7 @@ import {
   X,
 } from "@phosphor-icons/react";
 import { formatCurrency } from "../lib/format";
+import { BACKEND_URL } from "../lib/socket";
 
 function Metric({ label, value, icon: Icon }) {
   return (
@@ -63,7 +64,7 @@ export default function PlayerStatsOverlay({ player, visible, onClose, bidAmount
                   <div className="h-28 w-28 shrink-0 overflow-hidden rounded-full border border-slate-200 bg-slate-50 shadow-sm">
                     {player.action_image_url || player.image_url ? (
                       <img
-                        src={(player.action_image_url || player.image_url).startsWith("/") ? (player.action_image_url || player.image_url) : `/uploads/${player.action_image_url || player.image_url}`}
+                        src={(player.action_image_url || player.image_url).startsWith('http') ? (player.action_image_url || player.image_url) : `${BACKEND_URL}/uploads/${player.action_image_url || player.image_url}`}
                         alt={player.name}
                         className="h-full w-full object-contain"
                       />

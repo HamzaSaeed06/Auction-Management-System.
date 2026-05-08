@@ -19,7 +19,7 @@ router.post('/login', async (req, res) => {
     const [users] = await db.query(
       `SELECT u.user_id, u.username, u.email, u.password_hash,
               u.is_active, r.role_name,
-              t.team_id, t.team_name, t.remaining_budget
+              t.team_id, t.team_name, t.remaining_budget, t.logo_url
        FROM Users u
        JOIN Roles r ON u.role_id = r.role_id
        LEFT JOIN Teams t ON t.user_id = u.user_id
@@ -74,6 +74,7 @@ router.post('/login', async (req, res) => {
         team_id:          user.team_id || null,
         team_name:        user.team_name || null,
         remaining_budget: user.remaining_budget || null,
+        logo_url:         user.logo_url || null,
       }
     });
 
@@ -89,7 +90,7 @@ router.get('/me', verifyToken, async (req, res) => {
   try {
     const [users] = await db.query(
       `SELECT u.user_id, u.username, u.email, r.role_name,
-              t.team_id, t.team_name, t.remaining_budget
+              t.team_id, t.team_name, t.remaining_budget, t.logo_url
        FROM Users u
        JOIN Roles r ON u.role_id = r.role_id
        LEFT JOIN Teams t ON t.user_id = u.user_id

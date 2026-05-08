@@ -23,6 +23,7 @@ import {
 } from "@phosphor-icons/react";
 import { useAuth } from "../lib/auth";
 import { cn } from "../lib/format";
+import { BACKEND_URL } from "../lib/socket";
 
 const SUPER_ADMIN_LINKS = [
   { href: "/super-admin", label: "Overview", icon: HouseLine },
@@ -233,9 +234,17 @@ function UserMenu({ user, logout }) {
         {/* Avatar right - clickable */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className={`shrink-0 h-8 w-8 rounded-full flex items-center justify-center text-white text-xs font-bold transition hover:opacity-80 shadow-sm ${avatarBg}`}
+          className={`shrink-0 h-8 w-8 rounded-full flex items-center justify-center text-white text-xs font-bold transition hover:opacity-80 shadow-sm overflow-hidden ${avatarBg}`}
         >
-          {(user?.username || "U").charAt(0).toUpperCase()}
+          {user?.logo_url ? (
+            <img 
+              src={user.logo_url.startsWith('http') ? user.logo_url : `${BACKEND_URL}/uploads/${user.logo_url}`} 
+              className="h-full w-full object-cover" 
+              alt="" 
+            />
+          ) : (
+            (user?.username || "U").charAt(0).toUpperCase()
+          )}
         </button>
       </div>
 

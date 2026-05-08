@@ -15,6 +15,7 @@ import {
 } from "@phosphor-icons/react";
 import { apiFetch } from "../../lib/api";
 import { formatCurrency, cn } from "../../lib/format";
+import { BACKEND_URL } from "../../lib/socket";
 
 // ── Comparison Modal ─────────────────────────────────────────
 function CompareModal({ players, onClose }) {
@@ -36,7 +37,7 @@ function CompareModal({ players, onClose }) {
       <div className="grid grid-cols-3 gap-4 mb-6">
         <div className="flex flex-col items-center gap-2">
           <div className={cn("h-16 w-16 rounded-full flex items-center justify-center text-sm font-medium border border-slate-200 overflow-hidden", !a.image_url && "bg-slate-900 text-white")}>
-            {a.image_url ? <img src={a.image_url} className="w-full h-full object-contain" /> : a.name?.substring(0, 2).toUpperCase()}
+            {a.image_url ? <img src={a.image_url.startsWith('http') ? a.image_url : `${BACKEND_URL}/uploads/${a.image_url}`} className="w-full h-full object-contain" /> : a.name?.substring(0, 2).toUpperCase()}
           </div>
           <p className="text-ui-semibold text-slate-900 text-center leading-tight">{a.name}</p>
         </div>
@@ -47,7 +48,7 @@ function CompareModal({ players, onClose }) {
         </div>
         <div className="flex flex-col items-center gap-2">
           <div className={cn("h-16 w-16 rounded-full flex items-center justify-center text-sm font-medium border border-slate-200 overflow-hidden", !b.image_url && "bg-slate-900 text-white")}>
-            {b.image_url ? <img src={b.image_url} className="w-full h-full object-contain" /> : b.name?.substring(0, 2).toUpperCase()}
+            {b.image_url ? <img src={b.image_url.startsWith('http') ? b.image_url : `${BACKEND_URL}/uploads/${b.image_url}`} className="w-full h-full object-contain" /> : b.name?.substring(0, 2).toUpperCase()}
           </div>
           <p className="text-ui-semibold text-slate-900 text-center leading-tight">{b.name}</p>
         </div>
@@ -75,7 +76,7 @@ function WishlistSettingsModal({ player, currentMax, currentPriority, onClose, o
     <Modal open={true} onClose={onClose} title="Wishlist Settings" width={400}>
       <div className="flex items-center gap-3 mb-5 p-3 rounded-md bg-slate-50">
         <div className={cn("h-10 w-10 rounded-full flex items-center justify-center text-xs font-medium shrink-0 overflow-hidden", !player.image_url && "bg-slate-900 text-white")}>
-          {player.image_url ? <img src={player.image_url} className="w-full h-full object-contain" /> : player.name?.substring(0, 2).toUpperCase()}
+          {player.image_url ? <img src={player.image_url.startsWith('http') ? player.image_url : `${BACKEND_URL}/uploads/${player.image_url}`} className="w-full h-full object-contain" /> : player.name?.substring(0, 2).toUpperCase()}
         </div>
         <div>
           <p className="text-ui-semibold text-slate-900">{player.name}</p>
@@ -316,7 +317,7 @@ export default function FranchisePoolPage() {
                         <TableCell>
                           <div className="flex items-center gap-3">
                             <div className={cn("h-9 w-9 shrink-0 rounded-full flex items-center justify-center text-[11px] font-medium overflow-hidden border border-slate-100 shadow-sm", !item.image_url && "bg-slate-900 text-white")}>
-                              {item.image_url ? <img src={item.image_url} alt="" className="w-full h-full object-contain" /> : item.name?.substring(0, 2).toUpperCase()}
+                              {item.image_url ? <img src={item.image_url.startsWith('http') ? item.image_url : `${BACKEND_URL}/uploads/${item.image_url}`} alt="" className="w-full h-full object-contain" /> : item.name?.substring(0, 2).toUpperCase()}
                             </div>
                             <div>
                               <div className="flex items-center gap-2">
@@ -388,7 +389,7 @@ export default function FranchisePoolPage() {
                       <div className="p-5">
                         <div className="flex items-start justify-between mb-4">
                           <div className={cn("h-12 w-12 rounded-full flex items-center justify-center text-sm font-medium border border-slate-100 shadow-sm overflow-hidden", !item.image_url && "bg-slate-900 text-white")}>
-                            {item.image_url ? <img src={item.image_url} className="w-full h-full object-contain" /> : item.name?.substring(0, 2).toUpperCase()}
+                            {item.image_url ? <img src={item.image_url.startsWith('http') ? item.image_url : `${BACKEND_URL}/uploads/${item.image_url}`} className="w-full h-full object-contain" /> : item.name?.substring(0, 2).toUpperCase()}
                           </div>
                           <div className="flex gap-1" onClick={(e) => e.stopPropagation()}>
                             <TableDropdown 

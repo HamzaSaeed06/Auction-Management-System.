@@ -24,6 +24,7 @@ import DashboardLayout from "../../components/DashboardLayout";
 import PlayerStatsOverlay from "../../components/PlayerStatsOverlay";
 import { PageHeader, SectionCard, Button, Table, TableHeader, TableBody, TableRow, TableCell, TableHead, Badge, RoleBadge } from "../../components/UI";
 import { cn } from "../../lib/format";
+import { BACKEND_URL } from "../../lib/socket";
 import { toast } from "react-hot-toast";
 import { apiFetch } from "../../lib/api";
 import { formatCurrency, formatTime } from "../../lib/format";
@@ -331,7 +332,7 @@ export default function LiveAuctionPage() {
                           <div className="h-44 w-44 rounded-full border border-slate-100 bg-slate-50/50 shadow-sm overflow-hidden relative group-hover:scale-[1.02] transition-transform duration-500">
                             {currentPlayer.action_image_url || currentPlayer.image_url ? (
                               <img
-                                src={(currentPlayer.action_image_url || currentPlayer.image_url).startsWith("/") ? (currentPlayer.action_image_url || currentPlayer.image_url) : `/uploads/${currentPlayer.action_image_url || currentPlayer.image_url}`}
+                                src={(currentPlayer.action_image_url || currentPlayer.image_url).startsWith('http') ? (currentPlayer.action_image_url || currentPlayer.image_url) : `${BACKEND_URL}/uploads/${currentPlayer.action_image_url || currentPlayer.image_url}`}
                                 alt={currentPlayer.name}
                                 className="h-full w-full object-contain"
                               />
@@ -534,7 +535,7 @@ export default function LiveAuctionPage() {
                           <div className="flex items-center gap-3">
                             <div className={cn("h-10 w-10 shrink-0 rounded-full flex items-center justify-center text-[11px] font-bold border border-slate-100 shadow-sm overflow-hidden transition-transform group-hover:scale-105", !item.image_url && "bg-slate-900 text-white")}>
                               {item.image_url ? (
-                                <img src={item.image_url.startsWith("/") ? item.image_url : `/uploads/${item.image_url}`} alt="" className="w-full h-full object-contain" />
+                                <img src={item.image_url.startsWith('http') ? item.image_url : `${BACKEND_URL}/uploads/${item.image_url}`} alt="" className="w-full h-full object-contain" />
                               ) : (
                                 item.name?.substring(0, 2).toUpperCase()
                               )}
@@ -596,7 +597,7 @@ export default function LiveAuctionPage() {
                         i === 0 ? "bg-white border-blue-100 shadow-md ring-1 ring-blue-50" : "bg-white/50 border-slate-100 opacity-80"
                       )}>
                         <div className="h-8 w-8 shrink-0 rounded-full bg-slate-900 text-white flex items-center justify-center overflow-hidden border border-slate-200">
-                          {bid.team_logo ? <img src={bid.team_logo.startsWith("/") ? bid.team_logo : `/uploads/${bid.team_logo}`} alt="" className="h-full w-full object-contain" /> : bid.team_name?.substring(0, 2)}
+                          {bid.team_logo ? <img src={bid.team_logo.startsWith('http') ? bid.team_logo : `${BACKEND_URL}/uploads/${bid.team_logo}`} alt="" className="h-full w-full object-contain" /> : bid.team_name?.substring(0, 2)}
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-2">

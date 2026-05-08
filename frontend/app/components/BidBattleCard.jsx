@@ -15,6 +15,8 @@ import {
 import { cn } from "../lib/format";
 import { formatCurrency } from "../lib/format";
 import { Button, SectionCard, Badge } from "./UI";
+import { BACKEND_URL } from "../lib/socket";
+
 
 /**
  * BidBattleCard Component
@@ -76,7 +78,7 @@ export function BidBattleCard({
                     key={currentPlayer.player_id}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    src={currentPlayer.image_url.startsWith('http') ? currentPlayer.image_url : `/uploads/${currentPlayer.image_url}`}
+                    src={currentPlayer.image_url.startsWith('http') ? currentPlayer.image_url : `${BACKEND_URL}/uploads/${currentPlayer.image_url}`}
                     alt={currentPlayer.name}
                     className="h-full w-full object-contain drop-shadow-lg"
                   />
@@ -180,7 +182,7 @@ export function BidBattleCard({
                       <div className="flex items-center gap-2">
                         {bid.team_logo && (
                            <img 
-                            src={bid.team_logo.startsWith('http') ? bid.team_logo : `/uploads/${bid.team_logo}`} 
+                            src={bid.team_logo.startsWith('http') ? bid.team_logo : `${BACKEND_URL}/uploads/${bid.team_logo}`} 
                             className="h-4 w-4 rounded-full object-cover" 
                             alt=""
                            />
@@ -338,7 +340,7 @@ export function BidBattleCard({
                     <div className="h-8 w-8 rounded-full bg-slate-900 text-white flex items-center justify-center text-[9px] font-bold overflow-hidden shadow-sm border border-slate-700">
                       {p.team_logo ? (
                         <img
-                          src={p.team_logo.startsWith("/") ? p.team_logo : `/uploads/${p.team_logo}`}
+                          src={p.team_logo.startsWith('http') ? p.team_logo : `${BACKEND_URL}/uploads/${p.team_logo}`}
                           alt="team"
                           className="h-full w-full object-cover"
                         />
@@ -414,7 +416,7 @@ export function BidBattleCard({
                           <div className="h-6 w-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[7px] font-bold overflow-hidden shadow-sm">
                             {team.logo_url ? (
                               <img
-                                src={team.logo_url.startsWith("/") ? team.logo_url : `/uploads/${team.logo_url}`}
+                                src={team.logo_url.startsWith('http') ? team.logo_url : `${BACKEND_URL}/uploads/${team.logo_url}`}
                                 alt="team"
                                 className="h-full w-full object-cover"
                               />

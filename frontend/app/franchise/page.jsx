@@ -21,6 +21,7 @@ import {
 import { apiFetch } from "../lib/api";
 import { useAuth } from "../lib/auth";
 import { formatCurrency, cn } from "../lib/format";
+import { BACKEND_URL } from "../lib/socket";
 
 export default function FranchisePage() {
   const { user } = useAuth();
@@ -217,7 +218,7 @@ export default function FranchisePage() {
                 >
                   <div className={cn("h-8 w-8 rounded-lg flex items-center justify-center shrink-0 transition-colors overflow-hidden", !log.image_url ? "bg-slate-100 group-hover:bg-white" : "")}>
                     {log.image_url
-                      ? <img src={log.image_url} className="w-full h-full object-contain" />
+                      ? <img src={log.image_url.startsWith('http') ? log.image_url : `${BACKEND_URL}/uploads/${log.image_url}`} className="w-full h-full object-contain" />
                       : <Pulse size={16} className="text-slate-500" />}
                   </div>
                   <div className="min-w-0 flex-1">
@@ -309,7 +310,7 @@ export default function FranchisePage() {
                                 <div className="flex items-center gap-3">
                                   <div className={cn("h-8 w-8 rounded-full overflow-hidden flex items-center justify-center text-[10px] font-medium shrink-0", !player.image_url && "bg-slate-900 text-white")}>
                                     {player.image_url
-                                      ? <img src={player.image_url} className="w-full h-full object-contain" />
+                                      ? <img src={player.image_url.startsWith('http') ? player.image_url : `${BACKEND_URL}/uploads/${player.image_url}`} className="w-full h-full object-contain" />
                                       : player.name?.substring(0, 2).toUpperCase()}
                                   </div>
                                   <span className="font-semibold text-slate-900">{player.name}</span>
@@ -339,7 +340,7 @@ export default function FranchisePage() {
                             <div className="flex items-center gap-4 mb-5">
                               <div className={cn("flex h-12 w-12 shrink-0 items-center justify-center rounded-full overflow-hidden border border-slate-100", !player.image_url && "bg-slate-900")}>
                                 {player.image_url
-                                  ? <img src={player.image_url} className="w-full h-full object-contain" />
+                                  ? <img src={player.image_url.startsWith('http') ? player.image_url : `${BACKEND_URL}/uploads/${player.image_url}`} className="w-full h-full object-contain" />
                                   : <Person size={22} className="text-white" />}
                               </div>
                               <div className="min-w-0">
