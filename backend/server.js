@@ -7,19 +7,33 @@ require('dotenv').config();
 const app    = express();
 const server = http.createServer(app);
 
+const allowedOrigins = [
+  'https://auction-managementt-system.vercel.app',
+  'http://localhost:3000',
+  'http://localhost:8000'
+];
+
 const io = new Server(server, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"]
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
 
 app.set('io', io);
 
 app.use(cors({
-  origin: '*',
-  credentials: false,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
 }));
+
 app.use(express.json());
 app.use('/uploads', require('express').static(require('path').join(__dirname, 'uploads')));
 
