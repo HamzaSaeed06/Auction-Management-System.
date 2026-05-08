@@ -408,7 +408,7 @@ export default function FranchisePoolPage() {
                             />
                           </div>
                         </div>
-                        <h3 className="text-ui-semibold text-slate-900 truncate mb-0.5">{item.name}</h3>
+                        <h3 className="text-ui-semibold text-slate-900 truncate mb-0.5 capitalize">{item.name?.toLowerCase()}</h3>
                         <p className="text-sub text-slate-900 mb-4">{item.role}</p>
                         <div className="grid grid-cols-2 gap-2 py-3 border-y border-slate-50 mb-4">
                           <div>

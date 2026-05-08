@@ -239,7 +239,7 @@ export default function SuperAdminPage() {
                     <Pulse size={16} className="text-slate-400" />
                   </div>
                   <div className="min-w-0 flex-1">
-                     <p className="text-ui-semibold text-slate-900 truncate">{log.player_name || "System"}</p>
+                     <p className="text-ui-semibold text-slate-900 truncate capitalize">{(log.player_name || "System").toLowerCase()}</p>
                      <p className="text-ui-xs text-slate-500 line-clamp-1">{log.log_message}</p>
                   </div>
                   <div className="text-right shrink-0">

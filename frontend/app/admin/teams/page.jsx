@@ -245,13 +245,13 @@ export default function TeamsPage() {
                   {paginated.map((team) => (
                     <div 
                       key={team.team_id} 
-                      className="surface group hover:border-slate-900 transition-all duration-300 cursor-pointer bg-white"
+                      className="surface group hover:border-slate-900 transition-all duration-300 cursor-pointer bg-white h-full flex flex-col"
                       onClick={() => {
                         setSelectedTeam(team);
                         setDrawerOpen(true);
                       }}
                     >
-                      <div className="p-4">
+                      <div className="p-4 flex-1 flex flex-col justify-between">
                         <div className="flex items-start justify-between mb-4">
                           <div className="flex items-center gap-3">
                              <div className={cn("h-10 w-10 shrink-0 rounded-full flex items-center justify-center text-xs font-bold border border-slate-100 shadow-sm overflow-hidden", !team.logo_url && "bg-slate-900 text-white")}>
@@ -260,7 +260,7 @@ export default function TeamsPage() {
                                 ) : team.team_name?.substring(0, 2).toUpperCase()}
                              </div>
                             <div className="min-w-0">
-                               <h3 className="text-xs font-bold text-slate-950 truncate leading-none mb-1 uppercase tracking-tight">{team.team_name}</h3>
+                               <h3 className="text-xs font-bold text-slate-950 truncate leading-none mb-1 capitalize tracking-tight">{team.team_name?.toLowerCase()}</h3>
                                <p className="text-[10px] text-slate-400 font-medium truncate">{team.email || "No email"}</p>
                             </div>
                           </div>
@@ -276,7 +276,7 @@ export default function TeamsPage() {
 
                         <div className="py-3 border-y border-slate-50 space-y-3">
                            <div>
-                              <span className="block text-[9px] font-bold text-slate-400 uppercase tracking-tight mb-1">Franchise owner</span>
+                              <span className="block text-[9px] font-bold text-slate-400 capitalize tracking-tight mb-1">Franchise owner</span>
                               <div className="flex items-center gap-2">
                                  <div className={cn("h-6 w-6 rounded-full flex items-center justify-center text-[8px] font-bold overflow-hidden shrink-0", !team.owner_image_url && "bg-slate-100 text-slate-600")}>
                                     {team.owner_image_url ? (
@@ -292,11 +292,11 @@ export default function TeamsPage() {
                            
                            <div className="grid grid-cols-2 gap-3">
                               <div className="flex flex-col">
-                                 <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Total purse</span>
+                                 <span className="text-[9px] font-bold text-slate-400 capitalize tracking-tight">Total purse</span>
                                  <span className="text-xs font-bold text-slate-950">{formatCurrency(team.total_budget)}</span>
                               </div>
                               <div className="flex flex-col">
-                                 <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Remaining</span>
+                                 <span className="text-[9px] font-bold text-slate-400 capitalize tracking-tight">Remaining</span>
                                  <span className="text-xs font-bold text-emerald-600">{formatCurrency(team.remaining_budget)}</span>
                               </div>
                            </div>
@@ -305,8 +305,8 @@ export default function TeamsPage() {
                         <div className="mt-3 flex items-center justify-between">
                            <div className="flex items-center gap-1 text-slate-400">
                               <MapPin size={12} />
-                              <span className="text-[9px] font-bold uppercase tracking-tight truncate max-w-[150px]">
-                                 {team.city}
+                              <span className="text-[9px] font-bold capitalize tracking-tight truncate max-w-[150px]">
+                                 {team.city?.toLowerCase()}
                               </span>
                            </div>
                            <CaretRight size={12} className="text-slate-300 group-hover:text-slate-900 transition-colors" />

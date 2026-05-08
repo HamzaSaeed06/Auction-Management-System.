@@ -462,9 +462,9 @@ export default function PlayersPage() {
                   {paginated.map((player) => (
                     <div 
                       key={player.player_id} 
-                      className="surface group hover:border-slate-900 transition-all duration-300 bg-white"
+                      className="surface group hover:border-slate-900 transition-all duration-300 bg-white h-full flex flex-col"
                     >
-                       <div className="p-4">
+                       <div className="p-4 flex-1 flex flex-col justify-between">
                         <div className="flex items-start justify-between mb-4">
                           <div className="flex items-center gap-3">
                             <div className={cn("h-10 w-10 shrink-0 rounded-full flex items-center justify-center overflow-hidden border border-slate-100 shadow-sm", !player.image_url && "bg-slate-950 text-white")}>
@@ -475,7 +475,7 @@ export default function PlayersPage() {
                                )}
                             </div>
                             <div className="min-w-0">
-                              <h3 className="text-xs font-bold text-slate-950 truncate leading-none mb-1.5 uppercase tracking-tight">{player.name}</h3>
+                              <h3 className="text-xs font-bold text-slate-950 truncate leading-none mb-1.5 capitalize tracking-tight">{player.name?.toLowerCase()}</h3>
                               <div className="flex items-center gap-1.5">
                                  {player.country_code && (
                                    <img src={`https://flagcdn.com/w20/${player.country_code.toLowerCase()}.png`} alt="" className="h-2.5 w-4 object-contain rounded-[1px]" />
@@ -496,11 +496,11 @@ export default function PlayersPage() {
 
                         <div className="grid grid-cols-2 gap-3 py-3 border-y border-slate-50">
                            <div className="flex flex-col gap-0.5">
-                              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Base Price</span>
+                              <span className="text-[9px] font-bold text-slate-400 capitalize tracking-tight">Base Price</span>
                               <span className="text-xs font-bold text-slate-900">{formatCurrency(player.base_price)}</span>
                            </div>
                            <div className="flex flex-col gap-0.5">
-                              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Category</span>
+                              <span className="text-[9px] font-bold text-slate-400 capitalize tracking-tight">Category</span>
                               <span className="text-[10px] font-bold text-slate-600 capitalize tracking-wider">{player.category_name || "N/A"}</span>
                            </div>
                         </div>

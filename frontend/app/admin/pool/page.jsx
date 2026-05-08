@@ -217,8 +217,8 @@ export default function PoolPage() {
                 <div className="overflow-auto relative border-t border-slate-100 no-scrollbar">
                   <div className="grid gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 bg-slate-50/50">
                     {paginated.map((item) => (
-                      <div key={item.pool_id} className="surface group hover:border-slate-900 transition-all duration-300 bg-white">
-                        <div className="p-4">
+                      <div key={item.pool_id} className="surface group hover:border-slate-900 transition-all duration-300 bg-white h-full flex flex-col">
+                        <div className="p-4 flex-1 flex flex-col justify-between">
                           <div className="flex items-start justify-between mb-4">
                             <div className="flex items-center gap-3">
                               <div className={cn("h-10 w-10 shrink-0 rounded-full flex items-center justify-center overflow-hidden border border-slate-100 shadow-sm", !item.image_url && "bg-slate-950 text-white")}>
@@ -233,7 +233,7 @@ export default function PoolPage() {
                                  )}
                               </div>
                               <div className="min-w-0">
-                                <h3 className="text-xs font-bold text-slate-950 truncate leading-none mb-1.5 uppercase tracking-tight">{item.name}</h3>
+                                <h3 className="text-xs font-bold text-slate-950 truncate leading-none mb-1.5 capitalize tracking-tight">{item.name?.toLowerCase()}</h3>
                                 <div className="flex items-center gap-1.5">
                                    <RoleBadge role={item.role} className="scale-90 origin-left" />
                                 </div>
@@ -244,17 +244,17 @@ export default function PoolPage() {
 
                           <div className="grid grid-cols-2 gap-3 py-3 border-y border-slate-50">
                              <div className="flex flex-col gap-0.5">
-                                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Base Price</span>
+                                <span className="text-[9px] font-bold text-slate-400 capitalize tracking-tight">Base Price</span>
                                 <span className="text-xs font-bold text-slate-950">{formatCurrency(item.base_price)}</span>
                              </div>
                              <div className="flex flex-col gap-0.5">
-                                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tight">Origin</span>
+                                <span className="text-[9px] font-bold text-slate-400 capitalize tracking-tight">Origin</span>
                                 <span className="text-[10px] font-bold text-slate-600 truncate">{item.country_name || "N/A"}</span>
                              </div>
                           </div>
 
                           <div className="mt-3 flex items-center justify-between">
-                             <div className={cn("flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-widest", 
+                             <div className={cn("flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-bold capitalize tracking-widest", 
                                item.status === "active" ? "bg-blue-50 text-blue-700" : 
                                item.status === "processed" ? "bg-slate-50 text-slate-500" : 
                                "bg-emerald-50 text-emerald-700"
@@ -263,7 +263,7 @@ export default function PoolPage() {
                              </div>
                              
                              <button 
-                               className="text-[9px] font-bold text-slate-400 hover:text-red-600 transition-colors uppercase tracking-wider"
+                               className="text-[8px] font-bold text-slate-400 hover:text-red-600 transition-colors tracking-wider"
                                onClick={() => setConfirm(item.pool_id)}
                              >
                                 Remove

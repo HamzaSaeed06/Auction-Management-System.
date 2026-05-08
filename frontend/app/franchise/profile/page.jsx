@@ -14,10 +14,12 @@ import {
   Drawer,
 } from "../../components/UI";
 import { apiFetch } from "../../lib/api";
+import { useAuth } from "../../lib/auth";
 import { cn } from "../../lib/format";
 import { BACKEND_URL, getFullImageUrl } from "../../lib/socket";
 
 export default function FranchiseProfilePage() {
+  const { user, updateUser } = useAuth();
   const [team, setTeam]       = useState(null);
   const [loading, setLoading] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -101,6 +103,7 @@ export default function FranchiseProfilePage() {
       });
 
       setTeam(teamData);
+      updateUser({ logo_url: teamData.logo_url, owner_image_url: teamData.owner_image_url });
       setIsEditOpen(false);
       setForm(f => ({ ...f, password: "" })); // Clear password
       toast("Profile updated successfully!", "success");

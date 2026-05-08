@@ -234,7 +234,7 @@ function UserMenu({ user, logout }) {
         {/* Avatar right - clickable */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className={`shrink-0 h-8 w-8 rounded-full flex items-center justify-center text-white text-xs font-bold transition hover:opacity-80 shadow-sm overflow-hidden ${avatarBg}`}
+          className={`shrink-0 h-8 w-8 rounded-full flex items-center justify-center text-white text-xs font-bold transition hover:opacity-80 shadow-sm overflow-hidden ${!user?.logo_url ? avatarBg : ''}`}
         >
           {user?.logo_url ? (
             <img 

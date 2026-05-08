@@ -345,7 +345,7 @@ export default function LiveAuctionPage() {
                           
                           <div className="mt-8 text-center">
                             <p className="text-[10px] font-bold text-slate-400 tracking-[0.2em] uppercase mb-1.5">CURRENT DRAFT</p>
-                            <h2 className="text-2xl font-bold text-slate-900 leading-tight mb-1 uppercase tracking-tight">
+                            <h2 className="text-2xl font-bold text-slate-900 leading-tight mb-1 capitalize tracking-tight">
                               {currentPlayer.name}
                             </h2>
                             <p className="text-ui font-medium text-slate-500">{currentPlayer.role || "Player"}</p>

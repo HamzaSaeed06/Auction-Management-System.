@@ -94,7 +94,7 @@ export function BidBattleCard({
                 <p className="text-[10px] font-bold text-slate-400 tracking-[0.2em] uppercase mb-2">
                   Current Bid Target
                 </p>
-                <h2 className="text-2xl font-bold text-slate-900 leading-tight mb-2 uppercase tracking-tight">
+                <h2 className="text-2xl font-bold text-slate-900 leading-tight mb-2 capitalize tracking-tight">
                   {currentPlayer.name}
                 </h2>
                 <Badge variant="neutral" className="inline-flex">

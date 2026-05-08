@@ -213,7 +213,7 @@ export default function UsersPage() {
                   {paginated.map((user, index) => (
                     <TableRow key={user.user_id}>
                       <TableCell>{(page - 1) * PAGE_SIZE + index + 1}</TableCell>
-                      <TableCell className="font-semibold text-slate-950">{user.username}</TableCell>
+                      <TableCell className="font-semibold text-slate-950 capitalize">{user.username?.toLowerCase()}</TableCell>
                       <TableCell>{user.email}</TableCell>
                       <TableCell>
                         <Badge variant={user.role_name === "Super Admin" ? "accent" : user.role_name === "Admin" ? "neutral" : "success"}>

@@ -10,7 +10,8 @@ const server = http.createServer(app);
 const allowedOrigins = [
   'https://auction-managementt-system.vercel.app',
   'http://localhost:3000',
-  'http://localhost:8000'
+  'http://localhost:8000',
+  'http://localhost:8005'
 ];
 
 const io = new Server(server, {

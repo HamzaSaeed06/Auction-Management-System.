@@ -47,8 +47,14 @@ export function AuthProvider({ children }) {
     router.push("/");
   };
 
+  const updateUser = (updatedUser) => {
+    const newUser = { ...user, ...updatedUser };
+    localStorage.setItem("auth_user", JSON.stringify(newUser));
+    setUser(newUser);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, token, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, token, login, logout, updateUser, loading }}>
       {children}
     </AuthContext.Provider>
   );

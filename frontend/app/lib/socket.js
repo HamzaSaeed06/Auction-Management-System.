@@ -5,8 +5,8 @@ let socket = null;
 // Backend URL ek jagah define karo
 // Backend URL should be configurable for production (Railway/Render)
 const rawUrl = process.env.NEXT_PUBLIC_API_URL || (typeof window !== 'undefined'
-  ? `${window.location.protocol}//${window.location.hostname}:8000`
-  : 'http://localhost:8000');
+  ? `${window.location.protocol}//${window.location.hostname}:8005`
+  : 'http://localhost:8005');
 
 export const BACKEND_URL = rawUrl.replace(/\/api$/, '');
 
