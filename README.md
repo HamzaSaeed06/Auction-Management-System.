@@ -1,106 +1,94 @@
-# Auction OS — Professional Cricket Auction Platform
+# Auction OS — Cricket Auction Platform
 
-A high-fidelity, real-time cricket auction management system built for scalability and performance. This platform allows administrators to manage every aspect of a tournament auction, from player categories to live bidding wars.
+A powerful, real-time cricket auction management system. This platform is designed for tournament organizers to manage player registrations, teams, and live bidding wars with sub-second synchronization.
+
+---
 
 ## 🚀 Key Features
 
-- **Real-Time Bidding Engine**: Powered by Socket.io for sub-second synchronization between franchises and the auctioneer.
-- **Role-Based Access Control**:
-  - **Super Admin**: Governance of countries, player categories, and auction seasons.
-  - **Admin**: Registry management for teams and players, auction pool building, and live control.
-  - **Franchise**: Interactive "War Room" for live bidding, squad tracking, and budget management.
-- **Dynamic Data Driven**: Zero hardcoded data. Every team, player, and rule is managed through the dashboard.
-- **Mobile First Design**: Fully responsive UI optimized for tablets and mobile devices.
-- **Stored Procedures & Triggers**: Advanced database logic for data integrity and high-speed bidding operations.
+*   **Real-Time Bidding**: Sub-second bid updates powered by WebSockets (Socket.io).
+*   **Role Management**:
+    *   **Super Admin**: Manage countries, categories, and auction seasons.
+    *   **Admin**: Manage teams, players, and control the live auction flow.
+    *   **Franchise**: A dedicated "War Room" for live bidding and squad management.
+*   **Dynamic System**: No hardcoded data; everything is managed via dashboards.
+*   **Responsive UI**: Optimized for desktops, tablets, and mobile devices.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: Next.js 14+ (App Router), Tailwind CSS, Framer Motion, Phosphor Icons, Lenis Smooth Scroll.
-- **Backend**: Node.js, Express, Socket.io.
-- **Database**: MySQL 8.0 (Relational schema with Procedures & Triggers).
-- **Authentication**: JWT (JSON Web Tokens) with secure cookie/header handling.
+*   **Frontend**: Next.js (App Router), Vanilla CSS, Framer Motion.
+*   **Backend**: Node.js, Express, Socket.io.
+*   **Database**: MySQL (with Stored Procedures for high-speed bidding logic).
+*   **Auth**: JWT (JSON Web Tokens).
 
 ---
 
 ## 📦 Installation & Setup
 
-### 1. Database Configuration
+### 1. Database Setup
 1. Create a MySQL database (e.g., `Auction_DB`).
-2. Import the complete schema and seed data from `/database/schema.sql`.
-3. This will create the necessary tables, stored procedures, and the initial admin accounts.
+2. Run the SQL script found in `/database/schema.sql` to create tables and procedures.
 
 ### 2. Backend Setup
-1. Navigate to the `backend` directory.
-2. Run `npm install` to install dependencies.
-3. Configure the `.env` file with your database credentials:
+1. Go to the `backend` folder.
+2. Run `npm install`.
+3. Create a `.env` file and add your database details:
    ```env
    DB_HOST=localhost
    DB_USER=root
    DB_PASSWORD=your_password
    DB_NAME=Auction_DB
    JWT_SECRET=your_secret_key
-   PORT=5000
+   PORT=8000
    ```
 4. Start the server: `npm run dev`.
 
 ### 3. Frontend Setup
-1. Navigate to the `frontend` directory.
+1. Go to the `frontend` folder.
 2. Run `npm install`.
-3. Start the development server: `npm run dev`.
-4. Access the application at `http://localhost:3000`.
+3. Start the app: `npm run dev`.
+4. Open `http://localhost:3000`.
 
 ---
 
-## 🔐 Initial Credentials
+## 🔐 Default Login Credentials
 
-| Username | Password | Role |
-|---|---|---|
-| `superadmin` | `admin123` | Super Admin |
-| `admin` | `admin123` | Admin |
-| *(franchises)* | *Set by Admin during team creation* | Franchise |
+| Role | Username | Password |
+| :--- | :--- | :--- |
+| **Super Admin** | `superadmin` | `admin123` |
+| **Admin** | `admin` | `admin123` |
+| **Franchise** | *Created by Admin* | *Set during creation* |
 
 ---
 
-## 📂 Project Architecture
+## 📂 Project Structure
 
 ```text
-├── backend/
-│   ├── middleware/     # Auth & Role guards
-│   ├── routes/         # Feature-specific API endpoints
-│   ├── uploads/        # Player/Team media storage
-│   ├── server.js       # Entry point (Express + Socket.io)
-│   └── state.js        # In-memory auction timer state
-├── frontend/
-│   ├── app/            # Next.js App Router (Layouts & Pages)
-│   ├── components/     # Atomic UI Design System
-│   └── lib/            # API clients and utility functions
-└── database/
-    └── schema.sql      # Single source of truth for DB
+├── backend/            # Express API & Socket server
+│   ├── routes/         # API Endpoints
+│   ├── uploads/        # Image storage
+│   └── server.js       # Main entry point
+├── frontend/           # Next.js Application
+│   ├── app/            # Pages & Layouts
+│   ├── components/     # UI Components
+│   └── lib/            # API & Socket helpers
+└── database/           # SQL Schema & Procedures
 ```
 
 ---
 
-## 🌐 Deployment (Production)
+## 🌐 Deployment Guidelines
 
-To run this project live, follow this strategy:
+### Backend (Railway/Render)
+*   Set **Root Directory** to `backend`.
+*   Add all Environment Variables from your `.env` to the dashboard.
 
-### 1. Backend (Persistent Server)
-Use **Railway.app** or **Render.com** for the backend.
-- **Why?** Vercel does not support persistent WebSockets (Socket.io) well.
-- Connect your GitHub repo and set the "Root Directory" to `backend`.
-- Add environment variables (`DB_HOST`, `DB_USER`, etc.) in the dashboard.
-
-### 2. Frontend (Static/Serverless)
-Use **Vercel** for the frontend.
-- Connect your GitHub repo and set the "Root Directory" to `frontend`.
-- **CRITICAL**: Add these Environment Variables in Vercel:
-  - `API_URL`: Your Backend URL (e.g., `https://your-backend.railway.app`)
-  - `NEXT_PUBLIC_API_URL`: Same as above (Required for Socket.io)
-
-### 3. Database
-- Use the MySQL instance on **Railway** (already configured in `schema.sql`).
+### Frontend (Vercel)
+*   Set **Root Directory** to `frontend`.
+*   Add these Environment Variables:
+    *   `NEXT_PUBLIC_API_URL`: Your live backend URL.
 
 ---
-Developed as a professional Database & Web Project.
+Developed as a Database & Web Development Project.
