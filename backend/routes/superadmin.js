@@ -5,8 +5,19 @@ const { verifyToken } = require('../middleware/auth');
 
 router.use(verifyToken);
 router.use((req, res, next) => {
-  if (req.user.role !== 'Super Admin') return res.status(403).json({ error: 'Super Admin access only.' });
-  next();
+  const role = req.user.role;
+  const isGet = req.method === 'GET';
+  const isUserRoute = req.path.startsWith('/users');
+
+  // Super Admin has full access
+  if (role === 'Super Admin') return next();
+
+  // Admin can only VIEW (GET) data, but cannot see users or modify anything
+  if (role === 'Admin' && isGet && !isUserRoute) {
+    return next();
+  }
+
+  return res.status(403).json({ error: 'Super Admin access only.' });
 });
 
 // ── OVERVIEW STATS ────────────────────────────────────────────

@@ -147,7 +147,7 @@ export function BidBattleCard({
         <div className="lg:col-span-8">
           <SectionCard
             padded={false}
-            className="surface h-full bg-white flex flex-col items-center justify-center p-10 relative overflow-hidden shadow-sm"
+            className="surface h-full bg-white flex flex-col items-center justify-center p-6 lg:p-10 relative overflow-hidden shadow-sm"
           >
             <div className="w-full h-full flex flex-col items-center justify-center text-center">
               {/* Current Bid Amount - Large Display */}
@@ -158,10 +158,10 @@ export function BidBattleCard({
                 transition={{ duration: 0.3 }}
                 className="mb-6"
               >
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">
                   Current Bid
                 </p>
-                <h1 className="text-7xl font-black text-slate-950 tracking-tighter leading-none tabular-nums">
+                <h1 className="text-5xl lg:text-7xl font-black text-slate-950 tracking-tighter leading-none tabular-nums">
                   {formatCurrency(highestBid)}
                 </h1>
               </motion.div>

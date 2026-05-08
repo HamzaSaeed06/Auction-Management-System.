@@ -60,7 +60,7 @@ export default function DashboardLayout({ children, allowedRoles }) {
         transition={{ duration: 0.2 }}
         className="flex-1 ml-0 lg:ml-64"
       >
-        <div className="p-4 lg:p-8 max-w-7xl mx-auto w-full">
+        <div className="p-3 lg:p-8 max-w-7xl mx-auto w-full">
           {children}
         </div>
       </motion.main>

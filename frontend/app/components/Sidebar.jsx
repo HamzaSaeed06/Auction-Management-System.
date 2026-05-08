@@ -134,8 +134,8 @@ export default function Sidebar({ isOpen, onClose }) {
 
   // Auto-close sidebar on route change for mobile
   useEffect(() => {
-    if (onClose) onClose();
-  }, [pathname, onClose]);
+    if (isOpen) onClose();
+  }, [pathname]);
 
   return (
     <>
@@ -147,15 +147,19 @@ export default function Sidebar({ isOpen, onClose }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-40 bg-slate-900/30 backdrop-blur-[2px] lg:hidden"
+            className="fixed inset-0 z-[1000] bg-slate-900/40 backdrop-blur-[2px] lg:hidden"
           />
         )}
       </AnimatePresence>
 
       <aside 
         className={cn(
-          "fixed inset-y-0 left-0 z-50 w-64 h-screen bg-white border-r border-slate-200 flex flex-col transition-transform duration-300 ease-in-out lg:translate-x-0",
-          isOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
+          "fixed inset-y-0 left-0 h-screen bg-white border-r border-slate-200 flex flex-col transition-transform duration-300 ease-in-out w-[280px]",
+          // Desktop: Always visible
+          "lg:translate-x-0 lg:z-40 lg:w-64",
+          // Mobile: Toggle-able
+          "z-[1001]",
+          isOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full shadow-none"
         )}
       >
         <div className="p-6 pb-4">
