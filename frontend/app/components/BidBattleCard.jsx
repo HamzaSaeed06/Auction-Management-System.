@@ -73,12 +73,12 @@ export function BidBattleCard({
             {/* Player Image */}
             <div className="flex-1 p-8 pb-4 flex flex-col items-center">
               <div className="h-44 w-44 rounded-xl border border-slate-200 bg-gradient-to-br from-slate-50 to-slate-100 shadow-md overflow-hidden relative group-hover:scale-[1.02] transition-transform duration-500">
-                {currentPlayer.image_url ? (
+                {(currentPlayer.action_image_url || currentPlayer.image_url) ? (
                   <motion.img
                     key={currentPlayer.player_id}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    src={getFullImageUrl(currentPlayer.image_url)}
+                    src={getFullImageUrl(currentPlayer.action_image_url || currentPlayer.image_url)}
                     alt={currentPlayer.name}
                     className="h-full w-full object-contain drop-shadow-lg"
                   />

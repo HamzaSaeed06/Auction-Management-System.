@@ -7,6 +7,7 @@ import DashboardLayout from "../../components/DashboardLayout";
 import { SectionCard, EmptyState, Spinner } from "../../components/UI";
 import { apiFetch } from "../../lib/api";
 import { formatCurrency, cn } from "../../lib/format";
+import { getFullImageUrl } from "../../lib/socket";
 
 const IDEAL = { Batsman: 6, Bowler: 5, "All-rounder": 3, Wicketkeeper: 2 };
 
@@ -78,7 +79,7 @@ export default function CompetitorsPage() {
                     <div className="flex items-center gap-4">
                       <div className={cn("h-12 w-12 rounded-full border border-slate-200 overflow-hidden flex items-center justify-center shrink-0", !team.logo_url && "bg-white")}>
                         {team.logo_url ? (
-                          <img src={team.logo_url} className="w-full h-full object-contain" alt={team.team_name} />
+                          <img src={getFullImageUrl(team.logo_url)} className="w-full h-full object-contain" alt={team.team_name} />
                         ) : (
                           <Shield size={24} className="text-slate-400" />
                         )}

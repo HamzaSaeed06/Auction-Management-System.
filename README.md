@@ -53,13 +53,14 @@ A powerful, real-time cricket auction management system. This platform is design
 
 ---
 
-## 🔐 Default Login Credentials
+## 🔐 System Roles
 
-| Role | Username | Password |
-| :--- | :--- | :--- |
-| **Super Admin** | `superadmin` | `admin123` |
-| **Admin** | `admin` | `admin123` |
-| **Franchise** | *Created by Admin* | *Set during creation* |
+The platform supports three distinct access levels:
+*   **Super Admin**: Global configuration, countries, categories, and auction seasons.
+*   **Admin**: Team management, player registration, and live auction control.
+*   **Franchise**: Live bidding "War Room," squad analysis, and team profile management.
+
+*Note: Credentials should be managed through the respective dashboards or direct database entry.*
 
 ---
 

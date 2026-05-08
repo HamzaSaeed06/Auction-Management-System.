@@ -13,8 +13,17 @@ export const BACKEND_URL = rawUrl.replace(/\/api$/, '');
 export const getFullImageUrl = (path) => {
   if (!path) return '';
   if (path.startsWith('http')) return path;
-  if (path.startsWith('/')) return `${BACKEND_URL}${path}`;
-  return `${BACKEND_URL}/uploads/${path}`;
+  
+  // Normalize path by removing leading slash if it exists
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  
+  // If it already starts with uploads/, just prepend backend URL
+  if (cleanPath.startsWith('uploads/')) {
+    return `${BACKEND_URL}/${cleanPath}`;
+  }
+  
+  // Otherwise, add uploads/ prefix
+  return `${BACKEND_URL}/uploads/${cleanPath}`;
 };
 
 export function getSocket() {

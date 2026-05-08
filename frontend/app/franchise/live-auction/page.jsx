@@ -112,9 +112,9 @@ export default function FranchiseLiveAuction() {
         apiFetch('/franchise/recently-sold'),
         apiFetch('/franchise/my-team')
       ]);
-      setTeamStats(statsRes.data || []);
-      setRecentlySold(soldRes.data || []);
-      setMyTeam(teamRes.data);
+      setTeamStats(statsRes || []);
+      setRecentlySold(soldRes || []);
+      setMyTeam(teamRes);
     } catch (err) {
       console.error(err);
     }

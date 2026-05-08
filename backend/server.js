@@ -236,6 +236,7 @@ async function handleAutoSell(auction_id, state) {
       player: state.currentPlayer,
       team_id: state.highestBidder.team_id,
       team_name: state.highestBidder.team_name,
+      team_logo: state.highestBidder.team_logo,
       amount: state.highestBid
     });
 
