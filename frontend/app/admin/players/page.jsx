@@ -105,7 +105,7 @@ import {
 } from "../../components/UI";
 import { apiFetch } from "../../lib/api";
 import { formatCurrency, cn } from "../../lib/format";
-import { BACKEND_URL } from "../../lib/socket";
+import { BACKEND_URL, getFullImageUrl } from "../../lib/socket";
 import { countriesData } from "../../lib/countries";
 
 const BATTING = ["Right-hand bat", "Left-hand bat"];
@@ -413,7 +413,7 @@ export default function PlayersPage() {
                           <div className="flex items-center gap-3">
                              <div className={cn("h-9 w-9 shrink-0 rounded-full flex items-center justify-center text-[11px] font-bold border border-slate-100 shadow-sm overflow-hidden", !player.image_url && "bg-slate-900 text-white")}>
                                 {player.image_url ? (
-                                  <img src={player.image_url.startsWith('http') ? player.image_url : `${BACKEND_URL}/uploads/${player.image_url}`} alt="" className="w-full h-full object-contain" />
+                                  <img src={getFullImageUrl(player.image_url)} alt="" className="w-full h-full object-contain" />
                                 ) : (
                                   player.name?.substring(0, 2).toUpperCase()
                                 )}
@@ -469,7 +469,7 @@ export default function PlayersPage() {
                           <div className="flex items-center gap-3">
                             <div className={cn("h-10 w-10 shrink-0 rounded-full flex items-center justify-center overflow-hidden border border-slate-100 shadow-sm", !player.image_url && "bg-slate-950 text-white")}>
                                {player.image_url ? (
-                                 <img src={player.image_url.startsWith('http') ? player.image_url : `/uploads/${player.image_url}`} alt="" className="w-full h-full object-contain" />
+                                 <img src={getFullImageUrl(player.image_url)} alt="" className="w-full h-full object-contain" />
                                ) : (
                                  <span className="text-[10px] font-bold">{player.name?.substring(0, 2).toUpperCase()}</span>
                                )}

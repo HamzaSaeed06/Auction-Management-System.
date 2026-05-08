@@ -15,7 +15,7 @@ import {
 } from "../../components/UI";
 import { apiFetch } from "../../lib/api";
 import { cn } from "../../lib/format";
-import { BACKEND_URL } from "../../lib/socket";
+import { BACKEND_URL, getFullImageUrl } from "../../lib/socket";
 
 export default function FranchiseProfilePage() {
   const [team, setTeam]       = useState(null);
@@ -131,7 +131,7 @@ export default function FranchiseProfilePage() {
             <div className="flex flex-col items-center gap-4 text-center">
               <div className={cn("h-28 w-28 rounded-full border border-slate-200 overflow-hidden flex items-center justify-center shrink-0", !team?.logo_url && "bg-slate-100")}>
                 {team?.logo_url ? (
-                  <img src={team.logo_url.startsWith('http') ? team.logo_url : `${BACKEND_URL}/uploads/${team.logo_url}`} className="w-full h-full object-contain" alt="Logo" />
+                  <img src={getFullImageUrl(team.logo_url)} className="w-full h-full object-contain" alt="Logo" />
                 ) : (
                   <Buildings size={36} className="text-slate-300" />
                 )}
@@ -147,7 +147,7 @@ export default function FranchiseProfilePage() {
             <div className="flex items-center gap-4">
               <div className={cn("h-16 w-16 rounded-full border border-slate-200 overflow-hidden flex items-center justify-center shrink-0", !team?.owner_image_url && "bg-slate-100")}>
                 {team?.owner_image_url ? (
-                  <img src={team.owner_image_url.startsWith('http') ? team.owner_image_url : `${BACKEND_URL}/uploads/${team.owner_image_url}`} className="w-full h-full object-contain" alt="Owner" />
+                  <img src={getFullImageUrl(team.owner_image_url)} className="w-full h-full object-contain" alt="Owner" />
                 ) : (
                   <User size={24} className="text-slate-300" />
                 )}
@@ -212,7 +212,7 @@ export default function FranchiseProfilePage() {
                 onClick={() => logoRef.current?.click()}
               >
                 {logoPreview || team?.logo_url ? (
-                  <img src={logoPreview || (team?.logo_url?.startsWith('http') ? team.logo_url : `${BACKEND_URL}/uploads/${team.logo_url}`)} className="absolute inset-0 w-full h-full object-contain" alt="Team logo" />
+                  <img src={logoPreview || getFullImageUrl(team?.logo_url)} className="absolute inset-0 w-full h-full object-contain" alt="Team logo" />
                 ) : (
                   <Buildings size={24} className="text-slate-300" />
                 )}
@@ -230,7 +230,7 @@ export default function FranchiseProfilePage() {
                 onClick={() => ownerRef.current?.click()}
               >
                 {ownerPreview || team?.owner_image_url ? (
-                  <img src={ownerPreview || (team?.owner_image_url?.startsWith('http') ? team.owner_image_url : `${BACKEND_URL}/uploads/${team.owner_image_url}`)} className="absolute inset-0 w-full h-full object-contain" alt="Owner" />
+                  <img src={ownerPreview || getFullImageUrl(team?.owner_image_url)} className="absolute inset-0 w-full h-full object-contain" alt="Owner" />
                 ) : (
                   <User size={24} className="text-slate-300" />
                 )}

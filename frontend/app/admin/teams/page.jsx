@@ -32,7 +32,7 @@ import {
 } from "../../components/UI";
 import { apiFetch } from "../../lib/api";
 import { formatCurrency, cn } from "../../lib/format";
-import { BACKEND_URL } from "../../lib/socket";
+import { BACKEND_URL, getFullImageUrl } from "../../lib/socket";
 
 const emptyForm = {
   team_name: "",
@@ -202,9 +202,7 @@ export default function TeamsPage() {
                           <TableCell>
                              <div className="flex items-center gap-3">
                                  <div className={cn("h-8 w-8 shrink-0 rounded-full flex items-center justify-center text-[10px] font-bold border border-slate-100 shadow-sm overflow-hidden", !team.logo_url && "bg-slate-900 text-white")}>
-                                    {team.logo_url ? (
-                                       <img src={team.logo_url.startsWith('http') ? team.logo_url : `${BACKEND_URL}/uploads/${team.logo_url}`} className="w-full h-full object-contain" alt="" />
-                                    ) : team.team_name?.substring(0, 2).toUpperCase()}
+                                    {team.logo_url ? <img src={getFullImageUrl(team.logo_url)} alt="" className="w-full h-full object-contain" /> : team.team_name?.substring(0, 2).toUpperCase()}
                                  </div>
                                 <div className="font-semibold text-slate-950 truncate max-w-[150px]">{team.team_name}</div>
                              </div>
@@ -217,7 +215,7 @@ export default function TeamsPage() {
                             <div className="flex items-center gap-3">
                                 <div className={cn("h-8 w-8 shrink-0 rounded-full flex items-center justify-center text-[10px] font-bold border border-slate-200 overflow-hidden", !team.owner_image_url && "bg-slate-100 text-slate-600")}>
                                    {team.owner_image_url ? (
-                                      <img src={team.owner_image_url.startsWith('http') ? team.owner_image_url : `${BACKEND_URL}/uploads/${team.owner_image_url}`} className="w-full h-full object-contain" alt="" />
+                                      <img src={getFullImageUrl(team.owner_image_url)} className="w-full h-full object-contain" alt="" />
                                    ) : team.owner_name?.substring(0, 2).toUpperCase()}
                                 </div>
                                <div className="text-sm font-semibold text-slate-800 truncate max-w-[120px]">{team.owner_name || "—"}</div>
@@ -258,7 +256,7 @@ export default function TeamsPage() {
                           <div className="flex items-center gap-3">
                              <div className={cn("h-10 w-10 shrink-0 rounded-full flex items-center justify-center text-xs font-bold border border-slate-100 shadow-sm overflow-hidden", !team.logo_url && "bg-slate-900 text-white")}>
                                 {team.logo_url ? (
-                                   <img src={team.logo_url.startsWith('http') ? team.logo_url : `/uploads/${team.logo_url}`} className="w-full h-full object-contain" alt="" />
+                                   <img src={getFullImageUrl(team.logo_url)} className="w-full h-full object-contain" alt="" />
                                 ) : team.team_name?.substring(0, 2).toUpperCase()}
                              </div>
                             <div className="min-w-0">
@@ -282,7 +280,7 @@ export default function TeamsPage() {
                               <div className="flex items-center gap-2">
                                  <div className={cn("h-6 w-6 rounded-full flex items-center justify-center text-[8px] font-bold overflow-hidden shrink-0", !team.owner_image_url && "bg-slate-100 text-slate-600")}>
                                     {team.owner_image_url ? (
-                                       <img src={team.owner_image_url.startsWith('http') ? team.owner_image_url : `${BACKEND_URL}/uploads/${team.owner_image_url}`} className="w-full h-full object-contain" alt="" />
+                                       <img src={getFullImageUrl(team.owner_image_url)} className="w-full h-full object-contain" alt="" />
                                     ) : team.owner_name?.substring(0, 2).toUpperCase()}
                                  </div>
                                  <div className="flex flex-col">

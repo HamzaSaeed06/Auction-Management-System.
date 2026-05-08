@@ -23,7 +23,7 @@ import {
 } from "@phosphor-icons/react";
 import { useAuth } from "../lib/auth";
 import { cn } from "../lib/format";
-import { BACKEND_URL } from "../lib/socket";
+import { BACKEND_URL, getFullImageUrl } from "../lib/socket";
 
 const SUPER_ADMIN_LINKS = [
   { href: "/super-admin", label: "Overview", icon: HouseLine },
@@ -238,7 +238,7 @@ function UserMenu({ user, logout }) {
         >
           {user?.logo_url ? (
             <img 
-              src={user.logo_url.startsWith('http') ? user.logo_url : `${BACKEND_URL}/uploads/${user.logo_url}`} 
+              src={getFullImageUrl(user.logo_url)} 
               className="h-full w-full object-cover" 
               alt="" 
             />
